@@ -1,0 +1,18 @@
+name: K3
+model: condition
+distortion: sr
+scale: 1
+gpu_ids: [0]
+
+datasets:
+  test:  # the 1st test dataset
+    name: Reconstruction
+    mode: LQGT_condition_Val
+    Test_K_ford: K3
+    dataroot: /Dataset
+    condition: image
+  
+#### path
+path:
+  root: ./
+  pretrain_model_G: D:/FilmRemoval-main/experiments/K3/models/latest_G.pth

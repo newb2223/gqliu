@@ -1,0 +1,59 @@
+name: K3
+model: condition
+use_tb_logger: true
+distortion: sr
+scale: 1
+gpu_ids: [0]
+
+datasets:
+  train:
+    name: Reconstruction
+    mode: LQGT_condition
+    Test_K_ford: K3
+    dataroot: /Dataset
+    dataroot_ratio: ./
+    use_shuffle: true
+    n_workers: 3
+    batch_size: 1 # Only can set 1. for supporting training on GTX3090 ~23GB GPU Memory
+    GT_size: 0
+    use_flip: false
+    use_rot: true
+    condition: image
+  val:
+    name: Reconstruction
+    mode: LQGT_condition_Val
+    Test_K_ford: K3
+    dataroot: /Dataset
+    dataroot_ratio: ./
+    condition: image
+
+#### path
+path:
+  root: ./
+#  pretrain_model_G: D:/FilmRemoval-main/pretrain_model/K2/300000_G.pth
+  strict_load: false
+  # resume_state: /remote-home/share/jiaqi2/FilmRemoval/experiments/K1/training_state/80.state
+
+#### training settings: learning rate scheme, loss
+train:
+  lr_G: !!float 5e-5
+  lr_scheme: MultiStepLR # MultiStepLR | CosineAnnealingLR_Restart
+  beta1: 0.9
+  beta2: 0.99
+  niter: 800 # 600000
+  warmup_iter: -1  # no warm up
+
+#  lr_steps: [40000, 80000, 200000, 400000]
+  lr_steps: [200，400]
+  lr_gamma: 0.5
+
+  pixel_criterion: l1
+  pixel_weight: 1.0
+
+  manual_seed: 20
+  val_freq: !!float 2000
+
+#### logger
+logger:
+  print_freq: 1
+  save_checkpoint_freq: !!float 10000
