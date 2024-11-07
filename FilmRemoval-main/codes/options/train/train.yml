@@ -51,7 +51,8 @@ train:
   pixel_weight: 1.0
 
   manual_seed: 20
-  val_freq: !!float 2000
+#  val_freq: !!float 2000
+val_freq: !!float 200
 
 #### logger
 logger:
