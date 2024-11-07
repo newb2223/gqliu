@@ -9,10 +9,10 @@ datasets:
     name: Reconstruction
     mode: LQGT_condition_Val
     Test_K_ford: K3
-    dataroot: /Dataset
+    dataroot: /openbayes/home/gqliu/FilmRemoval-main/Dataset
     condition: image
   
 #### path
 path:
   root: ./
-  pretrain_model_G: D:/FilmRemoval-main/experiments/K3/models/latest_G.pth
+  pretrain_model_G: /openbayes/home/gqliu/FilmRemoval-main/experiments/K3/models/latest_G.pth
